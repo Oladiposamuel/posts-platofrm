@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const cors=require("cors");
 
+const feedRoutes = require('./routes/feed');
+const authRoutes = require('./routes/auth');
+
 const app = express();
 
 const corsOptions ={
@@ -43,6 +46,9 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 //     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 //     next();
 // });
+
+app.use('/feed', feedRoutes);
+app.use('/auth', authRoutes);
 
 app.use((error, req, res, next) => {
     console.log(error);
